@@ -1,12 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ChakraProvider } from '@chakra-ui/react';
+
+import Home from './pages/Home';
+import BlockTransactions from './pages/BlockTransactions';
+import Address from './pages/Address';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <ChakraProvider>
+        <HashRouter>
+          <Routes>
+            <Route exact path="/" element={<Home/>} />
+            <Route path="/block/:blockHash/transactions" element={<BlockTransactions />} />
+            <Route path="/address/:address" element={<Address />} />
+          </Routes>
+        </HashRouter>
+    </ChakraProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
